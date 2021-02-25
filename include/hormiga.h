@@ -25,7 +25,7 @@ enum direction
   LE
 };
 
-enum directioncolor
+enum direction_color
 {
   WH,
   BL,

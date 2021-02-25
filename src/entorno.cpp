@@ -13,3 +13,12 @@
   Realizado por: Eric Dürr Sierra (alu0101027005)
   e-mail:        eric.durr.20@ull.edu.es
  */
+
+#include "../include/entorno.h"
+
+LangtonEnvironment::LangtonEnvironment(const int &n_rows, const int &n_cols,
+                                       int ant_pos_i, int ant_pos_j)
+    : cols_(n_cols), rows_(n_rows)
+{
+  ant_ = LangtonAnt{ant_pos_i, ant_pos_j};
+}

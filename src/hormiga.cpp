@@ -31,22 +31,9 @@ void LangtonAnt::mod_dir(const int &new_dir) { dir_ = new_dir; };
 
 const int LangtonAnt::check_environment(const bool &slot_color)
 {
-  if (slot_color == WH)
-  {
-    rotate_ant(WH);
-    move_ant();
-    return WH;
-  }
-  else if (slot_color == BL)
-  {
-    rotate_ant(BL);
-    move_ant();
-    return BL;
-  }
-  else
-  {
-    return -1;
-  }
+  rotate_ant(slot_color);
+  move_ant();
+  return slot_color;
 }
 
 std::string LangtonAnt::to_string(void) const

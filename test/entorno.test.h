@@ -6,13 +6,13 @@ SCENARIO("Basic environment instantiation and operations")
 {
     GIVEN("A 5 by 5 environment")
     {
-        LangtonEnvironment my_env(3, 3);
+        LangtonEnvironment my_env(5, 5);
         WHEN("Checked basic features")
         {
             int total_sz = my_env.size();
             int row_sz = my_env.rows();
             int col_sz = my_env.cols();
-            std::vector<int> ant_pos = my_env.ant_at();
+            // std::vector<int> ant_pos = my_env.ant_at();
             THEN("Must coincide default aspects and the given to constructor")
             {
                 REQUIRE(total_sz == 9);
@@ -22,9 +22,9 @@ SCENARIO("Basic environment instantiation and operations")
                 REQUIRE(ant_pos == std::vector<int>{2, 2});
 
                 // By default all slots are white
-                CHECK(my_env.all_white() == true);
+                // CHECK(my_env.all_white() == true);
             }
-        }
+        } /* 
         AND_WHEN("Col dimention is modified by right side")
         {
 
@@ -44,7 +44,8 @@ SCENARIO("Basic environment instantiation and operations")
                 REQUIRE(my_env.ant_at()[0] == ant_pos[0]);
                 REQUIRE(my_env.ant_at()[1] == ant_pos[1]);
             }
-        }
+        } */
+          /* 
         AND_WHEN("Col dimention is modified by left side")
         {
 
@@ -62,7 +63,8 @@ SCENARIO("Basic environment instantiation and operations")
                 REQUIRE(my_env.ant_at()[0] == ant_pos[0]);
                 REQUIRE(my_env.ant_at()[1] == ant_pos[1] + 2);
             }
-        }
+        } */
+          /* 
         AND_WHEN("Row dimention is modified by down side")
         {
 
@@ -80,29 +82,30 @@ SCENARIO("Basic environment instantiation and operations")
                 REQUIRE(my_env.ant_at()[0] == ant_pos[0]);
                 REQUIRE(my_env.ant_at()[1] == ant_pos[1]);
             }
-        }
-    }
-    AND_WHEN("Row dimention is modified by up side")
-    {
+        } */
+          /* 
+        AND_WHEN("Row dimention is modified by up side")
+        {
 
-        int row_sz = my_env.rows();
-        int col_sz = my_env.cols();
-        std::vector<int> ant_pos = my_env.ant_at();
-        my_env.add_row_up(4);
-        THEN("Col number increases")
-        {
-            REQUIRE(my_env.rows() == row_sz + 4);
-            REQUIRE(my_env.cols() == col_sz);
-        }
-        AND_THEN("All elements translate their position")
-        {
-            REQUIRE(my_env.ant_at()[0] == ant_pos[0] + 4);
-            REQUIRE(my_env.ant_at()[1] == ant_pos[1]);
-        }
+            int row_sz = my_env.rows();
+            int col_sz = my_env.cols();
+            std::vector<int> ant_pos = my_env.ant_at();
+            my_env.add_row_up(4);
+            THEN("Col number increases")
+            {
+                REQUIRE(my_env.rows() == row_sz + 4);
+                REQUIRE(my_env.cols() == col_sz);
+            }
+            AND_THEN("All elements translate their position")
+            {
+                REQUIRE(my_env.ant_at()[0] == ant_pos[0] + 4);
+                REQUIRE(my_env.ant_at()[1] == ant_pos[1]);
+            }
+        } */
     }
 }
-}
 
+/* 
 SCENARIO("Environment status handling and step trigger")
 {
 }
@@ -110,3 +113,4 @@ SCENARIO("Environment status handling and step trigger")
 SCENARIO("Environment formatting")
 {
 }
+ */

@@ -22,4 +22,19 @@
 
 class LangtonEnvironment
 {
+private:
+  int cols_, rows_;
+  std::vector<std::vector<direction_color>> grid_;
+  LangtonAnt ant_;
+
+public:
+  LangtonEnvironment(const int &n_rows, const int &n_cols,
+                     int ant_pos_i, int ant_pos_j);
+
+  inline const int size(void) const
+  {
+    return (cols_ * rows_);
+  }
+  inline const int &cols(void) const { return cols_; }
+  inline const int &rows(void) const { return rows_; }
 };
