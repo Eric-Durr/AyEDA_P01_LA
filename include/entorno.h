@@ -13,3 +13,13 @@
   Realizado por: Eric Dürr Sierra (alu0101027005)
   e-mail:        eric.durr.20@ull.edu.es
  */
+
+#include <iostream>
+#include <vector>
+#include <string>
+
+#include "hormiga.h"
+
+class LangtonEnvironment
+{
+};
