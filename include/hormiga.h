@@ -15,28 +15,42 @@
  */
 #include <iostream>
 #include <vector>
+#include <string>
 
- enum direction
+enum direction
 {
   UP,
   RI,
   DO,
   LE
 };
- 
+
+enum directioncolor
+{
+  WH,
+  BL,
+};
+
 class LangtonAnt
 {
 private:
   int pos_i_, pos_j_;
-  direction dir_;
+  int dir_;
+
 public:
   LangtonAnt(int pos_i = -1, int pos_j = -1, direction dir = LE);
 
   const std::vector<int> current_pos(void) const;
   void mod_pos(const int &new_i, const int &new_j);
 
-  const direction current_dir(void) const;
-  void mod_dir(const direction& new_dir);
+  const int current_dir(void) const;
+  void mod_dir(const int &new_dir);
 
+  const int check_environment(const bool &slot_color);
 
+  std::string to_string(void) const;
+
+private:
+  void rotate_ant(int rule);
+  void move_ant(void);
 };
