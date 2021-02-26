@@ -6,18 +6,18 @@ SCENARIO("Basic environment instantiation and operations")
 {
     GIVEN("A 5 by 5 environment")
     {
-        LangtonEnvironment my_env(5, 5);
+        LangtonEnvironment my_env(5, 5, 2, 2);
         WHEN("Checked basic features")
         {
             int total_sz = my_env.size();
             int row_sz = my_env.rows();
             int col_sz = my_env.cols();
-            // std::vector<int> ant_pos = my_env.ant_at();
+            std::vector<int> ant_pos = my_env.ant_at();
             THEN("Must coincide default aspects and the given to constructor")
             {
-                REQUIRE(total_sz == 9);
-                REQUIRE(row_sz == 3);
-                REQUIRE(col_sz == 3);
+                REQUIRE(total_sz == 25);
+                REQUIRE(row_sz == 5);
+                REQUIRE(col_sz == 5);
                 // By default the ant is in the middle of the environment
                 REQUIRE(ant_pos == std::vector<int>{2, 2});
 

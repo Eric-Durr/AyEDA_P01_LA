@@ -37,4 +37,6 @@ public:
   }
   inline const int &cols(void) const { return cols_; }
   inline const int &rows(void) const { return rows_; }
+
+  inline const std::vector<int> ant_at(void) const { return ant_.current_pos(); }
 };
