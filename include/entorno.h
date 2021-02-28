@@ -29,7 +29,7 @@ private:
 
 public:
   LangtonEnvironment(const int &n_rows, const int &n_cols,
-                     int ant_pos_i, int ant_pos_j);
+                     int ant_pos_i = -1, int ant_pos_j = -1);
 
   inline const int size(void) const
   {
@@ -39,4 +39,16 @@ public:
   inline const int &rows(void) const { return rows_; }
 
   inline const std::vector<int> ant_at(void) const { return ant_.current_pos(); }
+  inline const int ant_facing(void) const { return ant_.current_dir(); }
+
+  const bool all_white(void) const;
+  const std::string to_string(void) const;
+
+  void step(const int& times);
+
+private:
+  void add_col_right(const int &n);
+  void add_col_left(const int &n);
+  void add_row_down(const int &n);
+  void add_row_up(const int &n);
 };

@@ -6,7 +6,7 @@ SCENARIO("Basic environment instantiation and operations")
 {
     GIVEN("A 5 by 5 environment")
     {
-        LangtonEnvironment my_env(5, 5, 2, 2);
+        LangtonEnvironment my_env(5, 5);
         WHEN("Checked basic features")
         {
             int total_sz = my_env.size();
@@ -22,10 +22,23 @@ SCENARIO("Basic environment instantiation and operations")
                 REQUIRE(ant_pos == std::vector<int>{2, 2});
 
                 // By default all slots are white
-                // CHECK(my_env.all_white() == true);
+                CHECK(my_env.all_white() == true);
             }
-        } /* 
-        AND_WHEN("Col dimention is modified by right side")
+            AND_THEN("Output string shows as expected")
+            {
+                CHECK(my_env.to_string() ==
+                      "\n"
+                      "┌───────────────┐\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "│       ←       │\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "└───────────────┘\n");
+            }
+        }
+        // FOR TEST THIS YOU MUST SET THE ADDERS TO PUBLIC
+        /* AND_WHEN("Col dimention is modified by right side")
         {
 
             int row_sz = my_env.rows();
@@ -44,8 +57,20 @@ SCENARIO("Basic environment instantiation and operations")
                 REQUIRE(my_env.ant_at()[0] == ant_pos[0]);
                 REQUIRE(my_env.ant_at()[1] == ant_pos[1]);
             }
-        } */
-          /* 
+            AND_THEN("Output string shows as expected")
+            {
+                CHECK(my_env.to_string() ==
+                      "\n"
+                      "┌──────────────────┐\n"
+                      "│                  │\n"
+                      "│                  │\n"
+                      "│       ←          │\n"
+                      "│                  │\n"
+                      "│                  │\n"
+                      "└──────────────────┘\n");
+            }
+        }
+
         AND_WHEN("Col dimention is modified by left side")
         {
 
@@ -63,8 +88,20 @@ SCENARIO("Basic environment instantiation and operations")
                 REQUIRE(my_env.ant_at()[0] == ant_pos[0]);
                 REQUIRE(my_env.ant_at()[1] == ant_pos[1] + 2);
             }
-        } */
-          /* 
+            AND_THEN("Output string shows as expected")
+            {
+                CHECK(my_env.to_string() ==
+                      "\n"
+                      "┌─────────────────────┐\n"
+                      "│                     │\n"
+                      "│                     │\n"
+                      "│             ←       │\n"
+                      "│                     │\n"
+                      "│                     │\n"
+                      "└─────────────────────┘\n");
+            }
+        }
+
         AND_WHEN("Row dimention is modified by down side")
         {
 
@@ -82,8 +119,23 @@ SCENARIO("Basic environment instantiation and operations")
                 REQUIRE(my_env.ant_at()[0] == ant_pos[0]);
                 REQUIRE(my_env.ant_at()[1] == ant_pos[1]);
             }
-        } */
-          /* 
+            AND_THEN("Output string shows as expected")
+            {
+                CHECK(my_env.to_string() ==
+                      "\n"
+                      "┌───────────────┐\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "│       ←       │\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "└───────────────┘\n");
+            }
+        }
+
         AND_WHEN("Row dimention is modified by up side")
         {
 
@@ -101,16 +153,96 @@ SCENARIO("Basic environment instantiation and operations")
                 REQUIRE(my_env.ant_at()[0] == ant_pos[0] + 4);
                 REQUIRE(my_env.ant_at()[1] == ant_pos[1]);
             }
+            AND_THEN("Output string shows as expected")
+            {
+                CHECK(my_env.to_string() ==
+                      "\n"
+                      "┌───────────────┐\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "│       ←       │\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "└───────────────┘\n");
+            }
         } */
     }
 }
 
-/* 
 SCENARIO("Environment status handling and step trigger")
 {
+    GIVEN("A 5 by 5 environment")
+    {
+        LangtonEnvironment my_env(5, 5);
+        WHEN("Taking one runnign step")
+        {
+            my_env.step(1);
+            THEN("All features must change according the established rules")
+            {
+                // By default all slots are white
+                CHECK(my_env.all_white() == false);
+                CHECK(my_env.ant_at() == std::vector<int>{3, 2});
+                CHECK(my_env.ant_facing() == DO);
+                CHECK(my_env.to_string() ==
+                      "\n"
+                      "┌───────────────┐\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "│       x       │\n"
+                      "│       ↓       │\n"
+                      "│               │\n"
+                      "└───────────────┘\n");
+            }
+        }
+        AND_WHEN("Taking two runnign steps")
+        {
+            my_env.step(2);
+            THEN("All features must change according the established rules")
+            {
+                // By default all slots are white
+                CHECK(my_env.all_white() == false);
+                CHECK(my_env.ant_at() == std::vector<int>{3, 3});
+                CHECK(my_env.ant_facing() == RI);
+                CHECK(my_env.to_string() ==
+                      "\n"
+                      "┌───────────────┐\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "│       x       │\n"
+                      "│       x  →    │\n"
+                      "│               │\n"
+                      "└───────────────┘\n");
+            }
+        }
+        AND_WHEN("Taking five runnign steps")
+        {
+            my_env.step(5);
+            THEN("All features must change according the established rules")
+            {
+                // By default all slots are white
+                CHECK(my_env.all_white() == false);
+                CHECK(my_env.ant_at() == std::vector<int>{1, 2});
+                CHECK(my_env.ant_facing() == RI);
+                CHECK(my_env.to_string() ==
+                      "\n"
+                      "┌───────────────┐\n"
+                      "│               │\n"
+                      "│       ↑       │\n"
+                      "│          x    │\n"
+                      "│       x  x    │\n"
+                      "│               │\n"
+                      "└───────────────┘\n");
+            }
+        }
+    }
 }
 
+/*
 SCENARIO("Environment formatting")
 {
 }
- */
+*/

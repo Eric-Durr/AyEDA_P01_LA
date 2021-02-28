@@ -36,21 +36,26 @@ const int LangtonAnt::check_environment(const bool &slot_color)
   return slot_color;
 }
 
+const direction_color LangtonAnt::switch_color(const bool &slot_color)
+{
+  return slot_color == WH ? BL : WH;
+}
+
 std::string LangtonAnt::to_string(void) const
 {
   switch (this->dir_)
   {
   case UP:
-    return "↑";
+    return ARR_U;
     break;
   case RI:
-    return "→";
+    return ARR_R;
     break;
   case DO:
-    return "↓";
+    return ARR_D;
     break;
   case LE:
-    return "←";
+    return ARR_L;
     break;
   default:
     return "?";

@@ -17,6 +17,11 @@
 #include <vector>
 #include <string>
 
+#define ARR_U "↑"
+#define ARR_R "→"
+#define ARR_D "↓"
+#define ARR_L "←"
+
 enum direction
 {
   UP,
@@ -47,6 +52,7 @@ public:
   void mod_dir(const int &new_dir);
 
   const int check_environment(const bool &slot_color);
+  const direction_color switch_color(const bool &slot_color);
 
   std::string to_string(void) const;
 
