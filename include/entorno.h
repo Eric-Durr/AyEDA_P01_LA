@@ -50,6 +50,8 @@ public:
 
   void step(const int &times);
 
+  friend std::ostream &operator<<(std::ostream &os, const LangtonEnvironment &this_object);
+
 private:
   void add_col_right(const int &n);
   void add_col_left(const int &n);

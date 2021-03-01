@@ -22,6 +22,7 @@ LangtonEnvironment::LangtonEnvironment(const int &n_rows, const int &n_cols,
                                        const direction &ant_dir)
     : cols_(n_cols), rows_(n_rows), steps_(0)
 {
+
   if (ant_pos_i == -1 || ant_pos_j == -1)
   {
     ant_ = LangtonAnt{rows_ / 2, cols_ / 2, ant_dir}; // Default value (middle)
@@ -119,6 +120,12 @@ void LangtonEnvironment::step(const int &times)
     if (this->ant_hit_left())
       this->add_col_left(1);
   }
+}
+
+std::ostream &operator<<(std::ostream &os, const LangtonEnvironment &this_object)
+{
+  os << this_object.to_string();
+  return os;
 }
 
 /* --- PRIVATE METHODS --- */

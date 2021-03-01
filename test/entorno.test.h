@@ -359,9 +359,3 @@ SCENARIO("Environment status handling and step trigger")
         }
     }
 }
-
-/*
-SCENARIO("Environment formatting")
-{
-}
-*/
