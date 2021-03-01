@@ -226,7 +226,7 @@ SCENARIO("Environment status handling and step trigger")
                 // By default all slots are white
                 CHECK(my_env.all_white() == false);
                 CHECK(my_env.ant_at() == std::vector<int>{1, 2});
-                CHECK(my_env.ant_facing() == RI);
+                CHECK(my_env.ant_facing() == UP);
                 CHECK(my_env.to_string() ==
                       "\n"
                       "┌───────────────┐\n"
@@ -236,6 +236,125 @@ SCENARIO("Environment status handling and step trigger")
                       "│       x  x    │\n"
                       "│               │\n"
                       "└───────────────┘\n");
+            }
+        }
+    }
+
+    GIVEN("A 5 by 5 environment with the ant facing left and at the bottom")
+    {
+
+        LangtonEnvironment my_env(5, 5, 4, 2);
+        WHEN("Taking one step")
+        {
+            my_env.step(1);
+            THEN("The environment must grow one row down")
+            {
+                REQUIRE(my_env.rows() == 6);
+            }
+            AND_THEN("All features must change according the established rules")
+            {
+                // By default all slots are white
+                CHECK(my_env.all_white() == false);
+                CHECK(my_env.ant_at() == std::vector<int>{5, 2});
+                CHECK(my_env.ant_facing() == DO);
+                CHECK(my_env.to_string() ==
+                      "\n"
+                      "┌───────────────┐\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "│       x       │\n"
+                      "│       ↓       │\n"
+                      "└───────────────┘\n");
+            }
+        }
+    }
+    GIVEN("A 5 by 5 environment with the ant facing up and at the left")
+    {
+
+        LangtonEnvironment my_env(5, 5, 2, 0, UP);
+        WHEN("Taking one step")
+        {
+            my_env.step(1);
+            THEN("The environment must grow one row down")
+            {
+                REQUIRE(my_env.cols() == 6);
+            }
+            AND_THEN("All features must change according the established rules")
+            {
+                // By default all slots are white
+                CHECK(my_env.all_white() == false);
+                CHECK(my_env.ant_at() == std::vector<int>{2, 0});
+                CHECK(my_env.ant_facing() == LE);
+                CHECK(my_env.to_string() ==
+                      "\n"
+                      "┌──────────────────┐\n"
+                      "│                  │\n"
+                      "│                  │\n"
+                      "│ ←  x             │\n"
+                      "│                  │\n"
+                      "│                  │\n"
+                      "└──────────────────┘\n");
+            }
+        }
+    }
+    GIVEN("A 5 by 5 environment with the ant facing right and at the top")
+    {
+
+        LangtonEnvironment my_env(5, 5, 0, 2, RI);
+        WHEN("Taking one step")
+        {
+            my_env.step(1);
+            THEN("The environment must grow one row down")
+            {
+                REQUIRE(my_env.rows() == 6);
+            }
+            AND_THEN("All features must change according the established rules")
+            {
+                // By default all slots are white
+                CHECK(my_env.all_white() == false);
+                CHECK(my_env.ant_at() == std::vector<int>{0, 2});
+                CHECK(my_env.ant_facing() == UP);
+                CHECK(my_env.to_string() ==
+                      "\n"
+                      "┌───────────────┐\n"
+                      "│       ↑       │\n"
+                      "│       x       │\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "│               │\n"
+                      "└───────────────┘\n");
+            }
+        }
+    }
+    GIVEN("A 5 by 5 environment with the ant facing down and at the right")
+    {
+
+        LangtonEnvironment my_env(5, 5, 2, 4, DO);
+        WHEN("Taking one step")
+        {
+            my_env.step(1);
+            THEN("The environment must grow one row down")
+            {
+                REQUIRE(my_env.cols() == 6);
+            }
+            AND_THEN("All features must change according the established rules")
+            {
+                // By default all slots are white
+                CHECK(my_env.all_white() == false);
+                CHECK(my_env.ant_at() == std::vector<int>{2, 5});
+                CHECK(my_env.ant_facing() == RI);
+                CHECK(my_env.to_string() ==
+                      "\n"
+                      "┌──────────────────┐\n"
+                      "│                  │\n"
+                      "│                  │\n"
+                      "│             x  → │\n"
+                      "│                  │\n"
+                      "│                  │\n"
+                      "└──────────────────┘\n");
             }
         }
     }

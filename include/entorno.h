@@ -27,9 +27,13 @@ private:
   std::vector<std::vector<direction_color>> grid_;
   LangtonAnt ant_;
 
+  int steps_;
+
 public:
   LangtonEnvironment(const int &n_rows, const int &n_cols,
-                     int ant_pos_i = -1, int ant_pos_j = -1);
+                     const int &ant_pos_i = -1,
+                     const int &ant_pos_j = -1,
+                     const direction &ant_dir = LE);
 
   inline const int size(void) const
   {
@@ -44,11 +48,16 @@ public:
   const bool all_white(void) const;
   const std::string to_string(void) const;
 
-  void step(const int& times);
+  void step(const int &times);
 
 private:
   void add_col_right(const int &n);
   void add_col_left(const int &n);
   void add_row_down(const int &n);
   void add_row_up(const int &n);
+
+  const bool ant_hit_up(void) const;
+  const bool ant_hit_right(void) const;
+  const bool ant_hit_down(void) const;
+  const bool ant_hit_left(void) const;
 };
